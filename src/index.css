@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 340 30% 97%;
+    --foreground: 340 30% 15%;
+
+    --card: 340 40% 96%;
+    --card-foreground: 340 30% 15%;
+
+    --popover: 340 30% 97%;
+    --popover-foreground: 340 30% 15%;
+
+    --primary: 340 75% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 330 40% 90%;
+    --secondary-foreground: 340 30% 20%;
+
+    --muted: 330 25% 92%;
+    --muted-foreground: 340 15% 45%;
+
+    --accent: 350 80% 65%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 340 30% 88%;
+    --input: 340 30% 88%;
+    --ring: 340 75% 55%;
+
+    --radius: 1rem;
+
+    /* Romantic custom tokens */
+    --rose-glow: 340 80% 70%;
+    --blush: 350 60% 92%;
+    --deep-rose: 340 85% 40%;
+    --warm-cream: 30 50% 96%;
+    --gold-accent: 38 80% 60%;
+    --romantic-gradient: linear-gradient(135deg, hsl(340 75% 55%), hsl(350 80% 65%), hsl(320 60% 50%));
+    --hero-gradient: linear-gradient(180deg, hsl(340 40% 92%), hsl(350 60% 92%), hsl(330 50% 95%));
+    --sunset-gradient: linear-gradient(135deg, hsl(340 75% 55% / 0.1), hsl(38 80% 60% / 0.1));
+
+    --font-display: 'Dancing Script', cursive;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Lora', serif;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 340 20% 8%;
+    --foreground: 340 20% 92%;
+    --card: 340 20% 12%;
+    --card-foreground: 340 20% 92%;
+    --popover: 340 20% 8%;
+    --popover-foreground: 340 20% 92%;
+    --primary: 340 75% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 330 30% 18%;
+    --secondary-foreground: 340 20% 90%;
+    --muted: 330 20% 16%;
+    --muted-foreground: 340 15% 60%;
+    --accent: 350 80% 65%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 340 20% 20%;
+    --input: 340 20% 20%;
+    --ring: 340 75% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-heading);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-heading {
+    font-family: var(--font-heading);
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  .bg-romantic-gradient {
+    background: var(--romantic-gradient);
+  }
+
+  .bg-hero-gradient {
+    background: var(--hero-gradient);
+  }
+
+  .bg-sunset-gradient {
+    background: var(--sunset-gradient);
+  }
+
+  .text-gradient-romantic {
+    background: var(--romantic-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* Floating hearts animation */
+@keyframes float-heart {
+  0% {
+    transform: translateY(100vh) rotate(0deg) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(90vh) rotate(15deg) scale(1);
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-10vh) rotate(45deg) scale(0.5);
+    opacity: 0;
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.15); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.1); }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+.animate-float-heart {
+  animation: float-heart linear infinite;
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.2s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+/* Smooth scrolling with love theme */
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  scroll-padding-top: 2rem;
+}
+
+/* Scroll animations */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-animate.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Love-themed scroll effects */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes heartPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Animation classes */
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-fadeInScale {
+  animation: fadeInScale 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-slideInFromLeft {
+  animation: slideInFromLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-slideInFromRight {
+  animation: slideInFromRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-heartPulse {
+  animation: heartPulse 2s ease-in-out infinite;
+}
+
+/* Heart explosion particles */
+@keyframes heart-explode {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(0);
+    opacity: 0;
+  }
+}
+
+.animate-heart-explode {
+  animation: heart-explode 1.5s ease-out forwards;
+}
